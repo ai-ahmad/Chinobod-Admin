@@ -52,7 +52,7 @@ export default {
   mounted() {
     setInterval(() => {
       this.activeStepIndex = (this.activeStepIndex + 1) % this.steps.length;
-    }, 1000);
+    }, 600000);
   }
 };
 </script>

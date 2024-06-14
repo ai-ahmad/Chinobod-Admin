@@ -4,6 +4,7 @@ import Page from '@/components/Page/Page.vue';
 import SignIn from '@/components/SignIn/SignIn.vue';
 import Navigation from "@/components/Navigation/Navigation.vue";
 import Loading from "@/components/Loading/Loading.vue";
+import Error from "@/components/Error/Error.vue";
 
 const routes = [
   {
@@ -29,6 +30,11 @@ const routes = [
     path: "/Loading",
     name: 'Loading',
     component: Loading
+  },
+  {
+    path: "/Error",
+    name: 'Error',
+    component: Error
   }
 ];
 

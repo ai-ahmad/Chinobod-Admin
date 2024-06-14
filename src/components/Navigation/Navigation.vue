@@ -35,8 +35,9 @@
                         <img v-if="selectedBlock === 'Qabul bolimi'" src="@/assets/img/res.jpg" alt="Image 2"
                             class="rounded-lg shadow-lg w-[500px] h-[180px] object-cover">
                     </div>
-                    <button class="mt-3 w-full bg-[#114E05] text-white py-2 rounded-lg">Navigatorni ishga
-                        tushirish</button>
+                    <router-link to="/Error" class="block mt-3 w-full bg-[#114E05] text-white py-2 rounded-lg text-center">
+                        Navigatorni ishga tushirish
+                    </router-link>
                 </div>
             </div>
             <div class="text">
@@ -56,9 +57,11 @@
                 <p v-if="selectedBlock === 'Kirish'">Kirish muolaja uchun navbat talab etilmaydi, to'g'ridan-to'g'ri
                     tashrif buyurishingiz mumkin.</p>
                 <p v-if="selectedBlock === 'Kirish'">Yangi muolajalarni boshlashni istaysizmi?!</p>
-                <p v-if="selectedBlock === 'Qabul bolimi'" class="text-lg font-semibold">Qabul bolimi (YURAK BILAN BO'GLIQ MUAMMOLAR)
+                <p v-if="selectedBlock === 'Qabul bolimi'" class="text-lg font-semibold">Qabul bolimi (YURAK BILAN BO'GLIQ
+                    MUAMMOLAR)
                 </p>
-                <p v-if="selectedBlock === 'Qabul bolimi'">Qabul bolimi muolaja uchun navbat talab etilmaydi, to'g'ridan-to'g'ri
+                <p v-if="selectedBlock === 'Qabul bolimi'">Qabul bolimi muolaja uchun navbat talab etilmaydi,
+                    to'g'ridan-to'g'ri
                     tashrif buyurishingiz mumkin.</p>
                 <p v-if="selectedBlock === 'Qabul bolimi'">Yangi muolajalarni boshlashni istaysizmi?!</p>
             </div>
@@ -82,5 +85,4 @@ export default {
     background-size: cover;
     background-position: center;
 }
-
 </style>
