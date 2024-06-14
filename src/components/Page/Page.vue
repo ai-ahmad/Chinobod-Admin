@@ -43,8 +43,8 @@
           <p class="text-white">Muolaja boshlanishiga qoldi:</p>
           <h2 class="text-2xl font-semibold text-white">{{ formattedTime }}</h2>
         </div>
-        <router-link to="/Loading">
-          <img src="@/assets/img/user.png" alt="Nurse" class="cursor-pointer" />
+        <router-link to="/Loading" class="block mt-3 w-full bg-[#022511] text-white py-2 rounded-lg text-center">
+          Hamshiraga Habar yo'llang !
         </router-link>
       </div>
     </div>
