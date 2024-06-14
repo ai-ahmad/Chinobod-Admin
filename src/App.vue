@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-view v-if="!isSignInRoute" /> 
-    <SignIn v-if="isSignInRoute" /> 
+    <SignIn v-if="isSignInRoute" />   
   </div>
 </template>
 
