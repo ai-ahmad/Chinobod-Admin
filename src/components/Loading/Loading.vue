@@ -1,4 +1,5 @@
 <template>
+#comment
   <div class="bg-image-1 relative">
     <ol class="flex items-center w-full mt-5">
       <li class="flex items-center w-full">
@@ -10,6 +11,7 @@
       <li
         class="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-green-700 after:border-4 after:inline-block dark:after:border-gray-700"
       >
+      
         <span
           class="flex items-center justify-center w-5 h-5 bg-green-700 rounded-full dark:bg-gray-700 shrink-0 bg-image-2"
         >
