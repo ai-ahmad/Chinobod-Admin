@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col items-center bg min-h-screen justify-center ">
-        <div class="container mx-auto">
+        <div class="container mx-auto navigator">
             <h1 class="text-2xl font-bold mb-6">Sanatoriyamizga xush kelibsiz</h1>
             <div class="flex justify-between mb-6">
                 <div class="w-2/3">
@@ -82,4 +82,5 @@ export default {
     background-size: cover;
     background-position: center;
 }
+
 </style>
