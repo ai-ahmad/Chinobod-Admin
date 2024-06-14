@@ -1,7 +1,8 @@
 <template>
   <div>
-    <router-view v-if="!isSignInRoute" /> 
-    <SignIn v-if="isSignInRoute" />   
+    <router-view v-if="!isSignInRoute" />
+    <SignIn v-if="isSignInRoute" />
+    <Navigator />
   </div>
 </template>
 
@@ -11,10 +12,14 @@ import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 
 import SignIn from "./components/SignIn/SignIn.vue";
+import Navigator from "./components/Navigation/Navigation.vue"
 
 export default {
   components: {
     SignIn,
+    Loading,
+    Navigator
+
   },
   setup() {
     const route = useRoute();
