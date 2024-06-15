@@ -5,6 +5,7 @@ import SignIn from '@/components/SignIn/SignIn.vue';
 import Navigation from "@/components/Navigation/Navigation.vue";
 import Loading from "@/components/Loading/Loading.vue";
 import Error from "@/components/Error/Error.vue";
+import Menu from "@/components/Menu/Menu.vue";
 
 const routes = [
   {
@@ -35,6 +36,11 @@ const routes = [
     path: "/Error",
     name: 'Error',
     component: Error
+  },
+  {
+    path: "/Menu",
+    name: 'Menu',
+    component: Menu
   }
 ];
 

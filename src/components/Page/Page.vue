@@ -20,9 +20,9 @@
           <router-link to="/Navigation" class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
             Sanatoriya xaritasi va navigator
           </router-link>
-          <button class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
+          <router-link to="/Menu" class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
             Ovqatlanish vaqtlari va menu
-          </button>
+          </router-link>
           <button class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
             Elektron kutubxona
           </button>
@@ -74,7 +74,6 @@ export default {
   },
   methods: {
     refreshRoom() {
-      // Logic for refreshing room
     },
     updateTime() {
       this.timeRemaining = moment.duration(this.treatmentTime.diff(moment()))
