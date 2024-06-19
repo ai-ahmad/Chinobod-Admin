@@ -32,7 +32,6 @@
           </div>
         </div>
 
-        <!-- Modal for Contact -->
         <div v-if="showModalContact" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <ContactModal @close="closeModalContact" />
         </div>
