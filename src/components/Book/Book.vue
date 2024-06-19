@@ -32,6 +32,11 @@
     <div v-else>
       <p>No books available in {{ selectedLanguage.toUpperCase() }}</p>
     </div>
+    <router-link
+      to="/Page"
+      class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg;"
+      >BACK TO</router-link
+    >
   </div>
 </template>
 
