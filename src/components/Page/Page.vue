@@ -16,7 +16,7 @@
           </button>
         </div>
 
-        <!-- Modal -->
+        <!-- Modal for 'Are you sure?' -->
         <div
           v-if="showModal"
           class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
@@ -33,6 +33,14 @@
               </button>
             </div>
           </div>
+        </div>
+
+        <!-- Modal for Contact -->
+        <div
+          v-if="showModalContact"
+          class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+        >
+          <ContactModal @close="closeModalContact" />
         </div>
 
         <div class="space-y-2 flex flex-col">
@@ -59,7 +67,7 @@
           </button>
           <button
             class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg"
-            @click="openModal"
+            @click="openModalContact"
           >
             Kontakt
           </button>
@@ -96,14 +104,15 @@ import accountImage from '@/assets/img/user.png'
 
 export default {
   components: {
-    ContactModal // Register the ContactModal component
+    ContactModal
   },
   data() {
     return {
       accountImage,
       treatmentTime: moment().add(1, 'hours').add(15, 'minutes').add(45, 'seconds'),
       timeRemaining: moment.duration(),
-      showModal: false, // Initialize showModal to control modal visibility
+      showModal: false,
+      showModalContact: false,
       feedback: ''
     }
   },
@@ -119,14 +128,19 @@ export default {
       this.timeRemaining = moment.duration(this.treatmentTime.diff(moment()))
     },
     openModal() {
-      this.showModal = true // Set showModal to true to open the modal
+      this.showModal = true
     },
     closeModal() {
-      this.showModal = false // Set showModal to false to close the modal
+      this.showModal = false
+    },
+    openModalContact() {
+      this.showModalContact = true
+    },
+    closeModalContact() {
+      this.showModalContact = false
     },
     sendFeedback() {
       const message = `Call Center \n Phone: +998901234567`
-      // Replace with your bot token and chat ID
       const BOT_TOKEN = '7267506140:AAEHhJBrHmIyiqbqxefjdLMU4yubr9-7dk8'
       const CHAT_ID = -1002240327746
       axios
@@ -136,11 +150,10 @@ export default {
         })
         .then((response) => {
           console.log('Message sent:', response.data)
-          this.closeModal() // Close modal after sending
+          this.closeModal()
         })
         .catch((error) => {
           console.error('Error sending message:', error)
-          // Handle error
         })
     }
   },

@@ -4,7 +4,7 @@
   >
     <div class="container p-6 bg-white rounded-lg shadow-md">
       <h2 class="text-5xl font-bold text-gray-800 mb-4">CONTACT</h2>
-      <div class="rating flex mb-4" id="rating">
+      <div class="rating flex mb-4">
         <span
           class="star text-7xl text-gray-400 cursor-pointer mr-1"
           :class="{ 'text-yellow-500': rating >= 1 }"
@@ -44,7 +44,7 @@
       <textarea
         v-model="feedback"
         class="w-full h-40 p-4 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-600 mb-4"
-        placeholder="SMS BILAN TELEFON RAQAMINGIZNI KIRITING TEZ ORAGA BIZNING ADMINISTRATORIMIZA SIZ BILAN BOG'LANADI"
+        placeholder="Enter your feedback here"
       ></textarea>
       <div class="flex justify-end">
         <button
@@ -82,12 +82,12 @@ export default {
       this.$emit('close')
     },
     sendFeedback() {
-      // Prepare message text
       const message = `Rating: ${this.rating}\nFeedback: ${this.feedback}`
 
       // Replace with your bot token and chat ID
-      const BOT_TOKEN = '7267506140:AAEHhJBrHmIyiqbqxefjdLMU4yubr9-7dk8'
-      const CHAT_ID = -1002240327746
+      const BOT_TOKEN = '7267506140:AAEHhJBrHmIyiqbqxefjdLMU4yubr9-7dk8' // Replace with your bot token
+      const CHAT_ID = -1002240327746 // Replace with your chat ID
+
       axios
         .post(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
           chat_id: CHAT_ID,
@@ -95,12 +95,10 @@ export default {
         })
         .then((response) => {
           console.log('Message sent:', response.data)
-          // Close modal after sending
-          this.closeModal()
+          this.closeModal() // Close modal after sending
         })
         .catch((error) => {
           console.error('Error sending message:', error)
-          // Handle error
         })
     }
   }
