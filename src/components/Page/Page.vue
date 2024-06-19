@@ -17,24 +17,36 @@
         </div>
 
         <div class="space-y-2 flex flex-col">
-          <button class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
+          <router-link
+            to="/Navigation"
+            class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg"
+          >
             Sanatoriya xaritasi va navigator
-          </button>
-          <button class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
+          </router-link>
+          <router-link
+            to="/Menu"
+            class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg"
+          >
             Ovqatlanish vaqtlari va menu
-          </button>
-          <button class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
-            Elektron kutubxona
-          </button>
-          <button class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
+          </router-link>
+          <router-link
+            class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg"
+            to="/AboutWe"
+          >
             Biz haqimizda
+          </router-link>
+          <button class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
+            Kasallik va davolanish haqida batafsil
           </button>
           <button class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
             Kontakt
           </button>
-          <button class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
-            Kasallik va davolanish haqida batafsil
-          </button>
+          <router-link
+            class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg"
+            to="/Book"
+          >
+            Elektron kutubxona
+          </router-link>
         </div>
       </div>
 
@@ -43,25 +55,12 @@
           <p class="text-white">Muolaja boshlanishiga qoldi:</p>
           <h2 class="text-2xl font-semibold text-white">{{ formattedTime }}</h2>
         </div>
-        <img
-          src="@/assets/img/user.png"
-          alt="Nurse"
-          @click="showSignInPage"
-          class="cursor-pointer"
-        />
-      </div>
-    </div>
-
-    <div
-      v-if="showSignIn"
-      class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75"
-    >
-      <div class="bg-white p-8 rounded-lg">
-        <h2 class="text-2xl mb-4">Sign In</h2>
-        <input type="text" placeholder="Username" class="border p-2 mb-4 w-full" />
-        <input type="password" placeholder="Password" class="border p-2 mb-4 w-full" />
-        <button class="bg-[#022511] text-white px-6 py-2 rounded" @click="signIn">Sign In</button>
-        <button class="ml-4 px-6 py-2 rounded" @click="showSignIn = false">Cancel</button>
+        <router-link
+          to="/Loading"
+          class="block mt-3 w-full bg-[#022511] text-white py-2 rounded-lg text-center"
+        >
+          Hamshiraga Habar yo'llang !
+        </router-link>
       </div>
     </div>
   </div>
@@ -76,7 +75,7 @@ export default {
     return {
       accountImage,
       treatmentTime: moment().add(1, 'hours').add(15, 'minutes').add(45, 'seconds'),
-      timeRemaining: '',
+      timeRemaining: moment.duration(),
       showSignIn: false
     }
   },
@@ -88,18 +87,9 @@ export default {
     }
   },
   methods: {
-    refreshRoom() {
-      // Logic for refreshing room
-    },
+    refreshRoom() {},
     updateTime() {
       this.timeRemaining = moment.duration(this.treatmentTime.diff(moment()))
-    },
-    showSignInPage() {
-      this.showSignIn = true
-    },
-    signIn() {
-      // Logic for signing in
-      this.showSignIn = false // Close the modal after sign in
     }
   },
   mounted() {

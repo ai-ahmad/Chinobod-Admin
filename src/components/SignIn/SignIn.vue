@@ -42,7 +42,7 @@ export default {
                 );
                 if (user) {
                     alert('Login successful');
-                    this.$router.push('/Page'); // Navigate to '/Page' upon successful login
+                    this.$router.push('/Page');
                 } else {
                     alert('Login yoki parol xato');
                 }

@@ -1,5 +1,4 @@
 <template>
-#comment
   <div class="bg-image-1 relative">
     <ol class="flex items-center w-full mt-5">
       <li class="flex items-center w-full">
@@ -11,7 +10,6 @@
       <li
         class="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-green-700 after:border-4 after:inline-block dark:after:border-gray-700"
       >
-      
         <span
           class="flex items-center justify-center w-5 h-5 bg-green-700 rounded-full dark:bg-gray-700 shrink-0 bg-image-2"
         >
@@ -32,9 +30,15 @@
         </span>
       </li>
     </ol>
-    <div class="text-center flex justify-center items-center flex-col">
-      <h1 class="text-center text-3xl text-green-700 font-bold w-[699px] mt-5">
-        Hamshira xabaringizni ko'rdi va tasdiqladi,iltimos biroz kuting !
+    <div class="text-center flex justify-center items-center flex-col mt-5">
+      <h1 v-if="activeStepIndex === 0" class="text-center text-3xl text-green-700 font-bold w-[699px]">
+        Xabar yuborildi, hamshira tasdiqlashi kutilmoqda
+      </h1>
+      <h1 v-else-if="activeStepIndex === 1" class="text-center text-3xl text-green-700 font-bold w-[699px]">
+        Hamshira xabaringizni ko'rdi va tasdiqladi, Iltimos biroz kuting !
+      </h1>
+      <h1 v-else-if="activeStepIndex === 2" class="text-center text-3xl text-green-700 font-bold w-[699px]">
+        Xamshira yetib keldi. Servisni baxolang
       </h1>
       <img src="@/assets/img/dock.png" alt="" class="w-[900px]" />
     </div>
@@ -43,8 +47,19 @@
 
 <script>
 export default {
-  name: 'Timeline'
-}
+  name: 'Timeline',
+  data() {
+    return {
+      activeStepIndex: -1,
+      steps: ['Step 1', 'Step 2', 'Step 3']
+    };
+  },
+  mounted() {
+    setInterval(() => {
+      this.activeStepIndex = (this.activeStepIndex + 1) % this.steps.length;
+    },100000);
+  }
+};
 </script>
 
 <style scoped>
@@ -66,5 +81,15 @@ export default {
   background-image: url('@/assets/img/bg3.png');
   background-size: cover;
   background-position: center;
+}
+
+.bg-image-4 {
+  background-image: url('@/assets/img/bg4.png');
+  background-size: cover;
+  background-position: center;
+}
+
+li:last-child .after\:border-b {
+  display: none;
 }
 </style>
