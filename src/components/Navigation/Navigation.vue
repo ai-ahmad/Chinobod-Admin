@@ -1,5 +1,9 @@
 <template>
     <div class="flex flex-col items-center bg min-h-screen justify-center ">
+        <div class="w-full flex justify-start pt-4 pl-4">
+            <router-link to="/Page"
+                class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">Orqaga</router-link>
+        </div>
         <div class="container mx-auto navigator">
             <h1 class="text-2xl font-bold mb-6">Sanatoriyamizga xush kelibsiz</h1>
             <div class="flex justify-between mb-6">

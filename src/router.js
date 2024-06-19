@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation/Navigation.vue";
 import Loading from "@/components/Loading/Loading.vue";
 import Error from "@/components/Error/Error.vue";
 import Menu from "@/components/Menu/Menu.vue";
+import AboutWe from "@/components/AboutWe/AboutWe.vue";
 
 const routes = [
   {
@@ -41,6 +42,11 @@ const routes = [
     path: "/Menu",
     name: 'Menu',
     component: Menu
+  },
+  {
+    path: "/Aboutwe",
+    name: 'AboutWe',
+    component: AboutWe
   }
 ];
 

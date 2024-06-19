@@ -23,17 +23,17 @@
           <router-link to="/Menu" class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
             Ovqatlanish vaqtlari va menu
           </router-link>
-          <button class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
-            Elektron kutubxona
-          </button>
-          <button class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
+          <router-link class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg" to="/AboutWe">
             Biz haqimizda
+          </router-link>
+          <button class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
+            Kasallik va davolanish haqida batafsil
           </button>
           <button class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
             Kontakt
           </button>
           <button class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
-            Kasallik va davolanish haqida batafsil
+            Elektron kutubxona
           </button>
         </div>
       </div>
@@ -48,7 +48,6 @@
         </router-link>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -61,7 +60,7 @@ export default {
     return {
       accountImage,
       treatmentTime: moment().add(1, 'hours').add(15, 'minutes').add(45, 'seconds'),
-      timeRemaining: '',
+      timeRemaining: moment.duration(),
       showSignIn: false
     }
   },
@@ -77,9 +76,8 @@ export default {
     },
     updateTime() {
       this.timeRemaining = moment.duration(this.treatmentTime.diff(moment()))
-    },
+    }
   },
-
   mounted() {
     this.updateTime()
     setInterval(this.updateTime, 1000)
@@ -94,3 +92,4 @@ export default {
   background-position: center;
 }
 </style>
+А
