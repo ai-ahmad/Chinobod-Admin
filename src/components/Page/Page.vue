@@ -17,13 +17,22 @@
         </div>
 
         <div class="space-y-2 flex flex-col">
-          <router-link to="/Navigation" class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
+          <router-link
+            to="/Navigation"
+            class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg"
+          >
             Sanatoriya xaritasi va navigator
           </router-link>
-          <router-link to="/Menu" class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
+          <router-link
+            to="/Menu"
+            class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg"
+          >
             Ovqatlanish vaqtlari va menu
           </router-link>
-          <router-link class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg" to="/AboutWe">
+          <router-link
+            class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg"
+            to="/AboutWe"
+          >
             Biz haqimizda
           </router-link>
           <router-link class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg" to="/Solution">
@@ -32,9 +41,12 @@
           <button class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
             Kontakt
           </button>
-          <button class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
+          <router-link
+            class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg"
+            to="/Book"
+          >
             Elektron kutubxona
-          </button>
+          </router-link>
         </div>
       </div>
 
@@ -43,12 +55,14 @@
           <p class="text-white">Muolaja boshlanishiga qoldi:</p>
           <h2 class="text-2xl font-semibold text-white">{{ formattedTime }}</h2>
         </div>
-        <router-link to="/Loading" class="block mt-3 w-full bg-[#022511] text-white py-2 rounded-lg text-center">
+        <router-link
+          to="/Loading"
+          class="block mt-3 w-full bg-[#022511] text-white py-2 rounded-lg text-center"
+        >
           Hamshiraga Habar yo'llang !
         </router-link>
       </div>
     </div>
-    <!-- Modal -->
     <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div class="bg-white p-6 rounded shadow-lg">
         <h2 class="text-xl mb-4">Are you sure?</h2>
@@ -131,6 +145,7 @@ export default {
           alert('Failed to send phone number.');
         });
     },
+    refreshRoom() {},
     updateTime() {
       this.timeRemaining = moment.duration(this.treatmentTime.diff(moment()))
     }
