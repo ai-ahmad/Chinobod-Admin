@@ -11,40 +11,44 @@
         </div>
         <div class="flex items-center space-x-2 mb-6">
           <button class="bg-[#022511] text-white px-6 py-3 rounded">A75 XONA</button>
-          <button class="bg-[#022511] p-2 rounded" @click="showModal = true">
+          <button class="bg-[#022511] p-2 rounded" @click="openModal">
             <img src="@/assets/img/change.svg" alt="Change Icon" class="w-7 h-7" />
           </button>
         </div>
 
+        <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div class="bg-white p-6 rounded shadow-lg">
+            <h2 class="text-xl mb-4">Are you sure?</h2>
+            <p class="mb-4">Do you want to send the phone number?</p>
+            <div class="flex justify-end space-x-2">
+              <button class="bg-red-500 text-white px-4 py-2 rounded" @click="closeModal">
+                No
+              </button>
+              <button class="bg-green-500 text-white px-4 py-2 rounded" @click="sendFeedback">
+                Yes
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div class="space-y-2 flex flex-col">
-          <router-link
-            to="/Navigation"
-            class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg"
-          >
+          <router-link to="/Navigation" class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
             Sanatoriya xaritasi va navigator
           </router-link>
-          <router-link
-            to="/Menu"
-            class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg"
-          >
+          <router-link to="/Menu" class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
             Ovqatlanish vaqtlari va menu
           </router-link>
-          <router-link
-            class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg"
-            to="/AboutWe"
-          >
+          <router-link to="/AboutWe" class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
             Biz haqimizda
           </router-link>
-          <router-link class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg" to="/Solution">
+          <router-link to="/Solution" class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
             Kasallik va davolanish haqida batafsil
           </router-link>
-          <button class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
+ 
+          <button @click="openModal" class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
             Kontakt
           </button>
-          <router-link
-            class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg"
-            to="/Book"
-          >
+          <router-link to="/Book" class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
             Elektron kutubxona
           </router-link>
         </div>
@@ -55,30 +59,18 @@
           <p class="text-white">Muolaja boshlanishiga qoldi:</p>
           <h2 class="text-2xl font-semibold text-white">{{ formattedTime }}</h2>
         </div>
-        <router-link
-          to="/Loading"
-          class="block mt-3 w-full bg-[#022511] text-white py-2 rounded-lg text-center"
-        >
+        <router-link to="/Loading" class="block mt-3 w-full bg-[#022511] text-white py-2 rounded-lg text-center">
           Hamshiraga Habar yo'llang !
         </router-link>
-      </div>
-    </div>
-    <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div class="bg-white p-6 rounded shadow-lg">
-        <h2 class="text-xl mb-4">Are you sure?</h2>
-        <p class="mb-4">Do you want to send the phone number?</p>
-        <div class="flex justify-end space-x-2">
-          <button class="bg-red-500 text-white px-4 py-2 rounded" @click="handleModalClose(false)">No</button>
-          <button class="bg-green-500 text-white px-4 py-2 rounded" @click="handleModalClose(true)">Yes</button>
-        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import moment from 'moment'
-import accountImage from '@/assets/img/user.png'
+import axios from 'axios';
+import moment from 'moment';
+import accountImage from '@/assets/img/user.png';
 
 export default {
   data() {
@@ -86,7 +78,6 @@ export default {
       accountImage,
       treatmentTime: moment().add(1, 'hours').add(15, 'minutes').add(45, 'seconds'),
       timeRemaining: moment.duration(),
-      showSignIn: false,
       showModal: false,
       users: [
         {
@@ -99,65 +90,75 @@ export default {
           login: "+998991234567",
           password: "12345678"
         }
-      ]
-    }
+      ],
+      feedback: ''
+    };
   },
-  
   computed: {
     formattedTime() {
       return this.timeRemaining
         ? moment.utc(this.timeRemaining.asMilliseconds()).format('HH:mm:ss')
-        : '00:00:00'
+        : '00:00:00';
     }
   },
   methods: {
-    handleModalClose(confirm) {
+    updateTime() {
+      this.timeRemaining = moment.duration(this.treatmentTime.diff(moment()));
+    },
+    openModal() {
+      this.showModal = true;
+    },
+    closeModal() {
       this.showModal = false;
-      if (confirm) {
-        this.sendPhoneNumber();
-      }
     },
     sendPhoneNumber() {
-      const BOT_TOKEN = '7267506140:AAEHhJBrHmIyiqbqxefjdLMU4yubr9-7dk8';
-      const CHAT_ID = -1002240327746;
+      const BOT_TOKEN = '7267506140:AAEHhJBrHmIyiqbqxefjdLMU4yubr9-7dk8'; 
+      const CHAT_ID = -1002240327746; // Replace with your chat ID
       const phoneNumber = this.users[0].login;
 
       const message = `<b>Telefon raqam:</b> ${phoneNumber}`;
 
-      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          chat_id: CHAT_ID,
-          text: message,
-          parse_mode: 'HTML'
-        })
+      axios.post(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        chat_id: CHAT_ID,
+        text: message,
+        parse_mode: 'HTML'
       })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log('Message sent:', data);
-          alert('Phone number sent successfully!');
-        })
-        .catch((error) => {
-          console.error('Error sending message:', error);
-          alert('Failed to send phone number.');
-        });
+      .then((response) => {
+        console.log('Message sent:', response.data);
+        alert('Phone number sent successfully!');
+      })
+      .catch((error) => {
+        console.error('Error sending message:', error);
+        alert('Failed to send phone number.');
+      });
     },
-    refreshRoom() {},
-    updateTime() {
-      this.timeRemaining = moment.duration(this.treatmentTime.diff(moment()))
+    sendFeedback() {
+      const message = `Call Center \n Phone: +998901234567`;
+      const BOT_TOKEN = '7267506140:AAEHhJBrHmIyiqbqxefjdLMU4yubr9-7dk8'; // Replace with your bot token
+      const CHAT_ID = -1002240327746; // Replace with your chat ID
+
+      axios.post(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        chat_id: CHAT_ID,
+        text: message
+      })
+      .then((response) => {
+        console.log('Message sent:', response.data);
+        this.closeModal(); 
+      })
+      .catch((error) => {
+        console.error('Error sending message:', error);
+        // Handle error
+      });
     }
   },
   mounted() {
-    this.updateTime()
-    setInterval(this.updateTime, 1000)
+    this.updateTime();
+    setInterval(this.updateTime, 1000);
   }
-}
+};
 </script>
 
-<style>
+<style scoped>
 .bg-admin-dash {
   background-image: url('@/assets/img/Admin-dash.png');
   background-size: cover;
