@@ -1,8 +1,8 @@
 <template>
     <div class="bg min-h-screen flex flex-col items-center">
         <div class="w-full flex justify-start pt-4 pl-4">
-            <router-link to="/Page"
-                class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">Orqaga</router-link>
+            <router-link to="/Page" class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
+                <img src="../../assets/img/exit.png" alt=""></router-link>
         </div>
 
         <div class="container flex flex-col items-center pt-16 pb-5">

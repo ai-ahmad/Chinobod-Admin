@@ -7,6 +7,7 @@ import Loading from "@/components/Loading/Loading.vue";
 import Error from "@/components/Error/Error.vue";
 import Menu from "@/components/Menu/Menu.vue";
 import AboutWe from "@/components/AboutWe/AboutWe.vue";
+import Solution from "@/components/Solution/Solution.vue";
 
 const routes = [
   {
@@ -47,6 +48,11 @@ const routes = [
     path: "/Aboutwe",
     name: 'AboutWe',
     component: AboutWe
+  },
+  {
+    path: "/Solution",
+    name: 'Solution',
+    component: Solution
   }
 ];
 

@@ -1,5 +1,6 @@
 <template>
     <div class="bg min-h-screen items-center justify-center">
+
         <swiper class="swiper !container !py-10" :modules="modules" :slides-per-view="4" :free-mode="true"
             :pagination="{ clickable: true }" :autoplay="true" :delay="1000">
             <swiper-slide class="slide !flex !justify-center" v-for="(slide, index) in slides" :key="index">
@@ -16,23 +17,31 @@
                 hududi
                 1938-yilda paxta tozalash zdlari ishchilarining dam olish zonasi boʻlgan, 1941-yil evakuatsiya qilingan
                 gospital
-                joylashtirilgan, 1946-yil sanatoriyga (75 oʻrinli) aylantirilgan. "CH." s.ning hozirgi maydoni 19 ga, atrofi
+                joylashtirilgan, 1946-yil sanatoriyga (75 oʻrinli) aylantirilgan. "CH." s.ning hozirgi maydoni 19 ga,
+                atrofi
                 mevali
-                va manzarali daraxtlar bilan koʻkalamzorlashtirilgan. 1963-yil sanatoriy hududida 1554 m chuqurliqsan burgʻi
+                va manzarali daraxtlar bilan koʻkalamzorlashtirilgan. 1963-yil sanatoriy hududida 1554 m chuqurliqsan
+                burgʻi
                 qudugʻi
-                orqali Toshkent mineral suvi chiqarilgan. Sanatoriy 370 oʻrinli, unda davolash va diagnostika boʻlimlari,
+                orqali Toshkent mineral suvi chiqarilgan. Sanatoriy 370 oʻrinli, unda davolash va diagnostika
+                boʻlimlari,
                 jumladan,
                 shifobaxsh mineral suv, balchiq, ozokerit va elektr bilan davolash boʻlimlari, badan tarbiya zali,
                 aerosolyariy,
                 ingalyatoriy, rentgen, rektoromonoskopiya, stomatologiya xonalari, biokimyo, bakteriologiya va klinik
                 lablari bor.
-                Mineral suvdan asosan vannalar uchun, ichish, ichaklarni chayish, tyubaj, dush, suv osti massaji qilishda
-                foydalaniladi. "CH."s. meʼda va 12 barmoq ichakni tekshiradigan zamonaviy tibbiy tekshiruv asboblari bilan
-                jihozlangan. 1997—98 yildan sanatoriyning davolash ixtisosligi kengaytirildi: qandli diabet, ginekologiya,
-                urologiya, andrologiya boʻlimlari faoliyat koʻrsata boshlai. 1999-yildan fol akupunktura diagnostikasi joriy
+                Mineral suvdan asosan vannalar uchun, ichish, ichaklarni chayish, tyubaj, dush, suv osti massaji
+                qilishda
+                foydalaniladi. "CH."s. meʼda va 12 barmoq ichakni tekshiradigan zamonaviy tibbiy tekshiruv asboblari
+                bilan
+                jihozlangan. 1997—98 yildan sanatoriyning davolash ixtisosligi kengaytirildi: qandli diabet,
+                ginekologiya,
+                urologiya, andrologiya boʻlimlari faoliyat koʻrsata boshlai. 1999-yildan fol akupunktura diagnostikasi
+                joriy
                 etiddi, bunda biologik faol nuqtalar (BFN) va kompyuter yordamida aniq tashxis qoʻyiladi.
 
-                Bemorlarga tabiiy mineral suvdan tashqari, doridarmonlar, shifobaxsh giyohlardan tayyorlangan damlamalar,
+                Bemorlarga tabiiy mineral suvdan tashqari, doridarmonlar, shifobaxsh giyohlardan tayyorlangan
+                damlamalar,
                 parhez
                 ovqatlar va boshqa beriladi. Yiliga 6000 kishi davolanadi (2004).
 
@@ -44,9 +53,8 @@
             </p>
         </div>
         <div class="flex justify-end container">
-            <router-link to="/Page"
-                class="bg-[#3D5F01] text-white font-roboto px-4 py-4 rounded-tl-3xl rounded-br-3xl text-center">
-                Home
+            <router-link to="/Page" class="self-start bg-[#022511] py-2 px-6 ml-10 mb-4 rounded-lg">
+                <img src="../../assets/img/exit.png" alt="Back">
             </router-link>
         </div>
     </div>
@@ -55,7 +63,7 @@
 <script>
 import { defineComponent } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/swiper-bundle.css'; 
+import 'swiper/swiper-bundle.css';
 
 import hotelRoom1 from '@/assets/img/Hotel-room-1.svg';
 import hotelRoom2 from '@/assets/img/Hotel-room-2.svg';

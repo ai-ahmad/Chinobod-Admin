@@ -1,7 +1,9 @@
 <template>
   <div class="bg-image-1 relative flex flex-col items-center justify-center h-screen">
     <div class="w-full flex justify-start pt-4 pl-4">
-      <router-link to="/Page" class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">Orqaga</router-link>
+      <router-link to="/Page" class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
+        <img src="../../assets/img/exit.png" alt="">
+      </router-link>
     </div>
     <ol class="flex items-center w-full max-w-4xl mx-auto mt-5">
       <!-- First and Second lines -->

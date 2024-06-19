@@ -11,7 +11,7 @@
         </div>
         <div class="flex items-center space-x-2 mb-6">
           <button class="bg-[#022511] text-white px-6 py-3 rounded">A75 XONA</button>
-          <button class="bg-[#022511] p-2 rounded" @click="refreshRoom">
+          <button class="bg-[#022511] p-2 rounded" @click="showModal = true">
             <img src="@/assets/img/change.svg" alt="Change Icon" class="w-7 h-7" />
           </button>
         </div>
@@ -26,9 +26,9 @@
           <router-link class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg" to="/AboutWe">
             Biz haqimizda
           </router-link>
-          <button class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
+          <router-link class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg" to="/Solution">
             Kasallik va davolanish haqida batafsil
-          </button>
+          </router-link>
           <button class="text-left px-6 py-2 bg-[#022511] text-white max-w-xs rounded-lg">
             Kontakt
           </button>
@@ -48,6 +48,17 @@
         </router-link>
       </div>
     </div>
+    <!-- Modal -->
+    <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+      <div class="bg-white p-6 rounded shadow-lg">
+        <h2 class="text-xl mb-4">Are you sure?</h2>
+        <p class="mb-4">Do you want to send the phone number?</p>
+        <div class="flex justify-end space-x-2">
+          <button class="bg-red-500 text-white px-4 py-2 rounded" @click="handleModalClose(false)">No</button>
+          <button class="bg-green-500 text-white px-4 py-2 rounded" @click="handleModalClose(true)">Yes</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -61,9 +72,23 @@ export default {
       accountImage,
       treatmentTime: moment().add(1, 'hours').add(15, 'minutes').add(45, 'seconds'),
       timeRemaining: moment.duration(),
-      showSignIn: false
+      showSignIn: false,
+      showModal: false,
+      users: [
+        {
+          id: 1,
+          login: "+998901234567",
+          password: "12345678"
+        },
+        {
+          id: 2,
+          login: "+998991234567",
+          password: "12345678"
+        }
+      ]
     }
   },
+  
   computed: {
     formattedTime() {
       return this.timeRemaining
@@ -72,7 +97,39 @@ export default {
     }
   },
   methods: {
-    refreshRoom() {
+    handleModalClose(confirm) {
+      this.showModal = false;
+      if (confirm) {
+        this.sendPhoneNumber();
+      }
+    },
+    sendPhoneNumber() {
+      const BOT_TOKEN = '7267506140:AAEHhJBrHmIyiqbqxefjdLMU4yubr9-7dk8';
+      const CHAT_ID = -1002240327746;
+      const phoneNumber = this.users[0].login;
+
+      const message = `<b>Telefon raqam:</b> ${phoneNumber}`;
+
+      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          text: message,
+          parse_mode: 'HTML'
+        })
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Message sent:', data);
+          alert('Phone number sent successfully!');
+        })
+        .catch((error) => {
+          console.error('Error sending message:', error);
+          alert('Failed to send phone number.');
+        });
     },
     updateTime() {
       this.timeRemaining = moment.duration(this.treatmentTime.diff(moment()))
@@ -92,4 +149,3 @@ export default {
   background-position: center;
 }
 </style>
-А
