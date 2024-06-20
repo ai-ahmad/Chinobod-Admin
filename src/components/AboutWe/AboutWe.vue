@@ -65,9 +65,13 @@ import { defineComponent } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/swiper-bundle.css';
 
-import hotelRoom1 from '@/assets/img/Hotel-room-1.svg';
-import hotelRoom2 from '@/assets/img/Hotel-room-2.svg';
-import hotelRoom3 from '@/assets/img/Hotel-room-3.svg';
+import hotelRoom1 from '@/assets/img/kitchen.jpg';
+import hotelRoom2 from '@/assets/img/land.jpg';
+import hotelRoom3 from '@/assets/img/room.jpg';
+import hotelRoom4 from '@/assets/img/dav.jpg';
+import hotelRoom5 from '@/assets/img/pool.jpg';
+
+
 
 export default defineComponent({
     name: 'SwiperExampleFreeMode',
@@ -78,13 +82,12 @@ export default defineComponent({
     setup() {
         const slides = [
             { image: hotelRoom1 },
-            { image: hotelRoom1 },
-            { image: hotelRoom1 },
-            { image: hotelRoom2 },
-            { image: hotelRoom2 },
             { image: hotelRoom2 },
             { image: hotelRoom3 },
-            { image: hotelRoom3 }
+            { image: hotelRoom4 },
+            { image: hotelRoom5 }
+
+
         ];
 
         return {

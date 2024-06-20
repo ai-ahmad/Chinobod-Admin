@@ -19,8 +19,8 @@
         <!-- Modal for Confirmation -->
         <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div class="bg-white p-6 rounded shadow-lg">
-            <h2 class="text-xl mb-4">Are you sure?</h2>
-            <p class="mb-4">Do you want to send the phone number?</p>
+            <h2 class="text-xl mb-4">Ishonchingiz komilmi</h2>
+            <p class="mb-4">Telefon raqamingizni Call center ga yuvoraylikmi ?</p>
             <div class="flex justify-end space-x-2">
               <button class="bg-red-500 text-white px-4 py-2 rounded" @click="closeModal">
                 No
@@ -87,7 +87,19 @@ export default {
       treatmentTime: moment().add(1, 'hours').add(15, 'minutes').add(45, 'seconds'),
       timeRemaining: moment.duration(),
       showModal: false,
-      showModalContact: false
+      showModalContact: false,
+      users: [
+        {
+          id: 1,
+          login: "+998901234567",
+          password: "12345678"
+        },
+        {
+          id: 2,
+          login: "+998947091973",
+          password: "12345678"
+        }
+      ]
     };
   },
   computed: {
@@ -108,9 +120,9 @@ export default {
       this.showModal = false;
     },
     sendPhoneNumber() {
-      const BOT_TOKEN = '7267506140:AAEHhJBrHmIyiqbqxefjdLMU4yubr9-7dk8'; // Replace with your bot token
-      const CHAT_ID = -1002240327746; // Replace with your chat ID
-      const phoneNumber = this.users[0].login; // Assuming sending the first user's phone number
+      const BOT_TOKEN = '7267506140:AAEHhJBrHmIyiqbqxefjdLMU4yubr9-7dk8'; 
+      const CHAT_ID = -1002240327746; 
+      const phoneNumber = this.users[0].login; 
 
       const message = `<b>Telefon raqam:</b> ${phoneNumber}`;
 
@@ -119,14 +131,15 @@ export default {
         text: message,
         parse_mode: 'HTML'
       })
-      .then((response) => {
-        console.log('Message sent:', response.data);
-        alert('Phone number sent successfully!');
-      })
-      .catch((error) => {
-        console.error('Error sending message:', error);
-        alert('Failed to send phone number.');
-      });
+        .then((response) => {
+          console.log('Message sent:', response.data);
+          alert('Phone number sent successfully!');
+          this.closeModal();
+        })
+        .catch((error) => {
+          console.error('Error sending message:', error);
+          alert('Failed to send phone number.');
+        });
     },
     openModalContact() {
       this.showModalContact = true;
